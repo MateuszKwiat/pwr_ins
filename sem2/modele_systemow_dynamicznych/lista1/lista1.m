@@ -1,27 +1,12 @@
 dt = 0.001;
 T = 20;
 t = 0:dt:T;
-xvec = zeros(size(t));
-yvec = zeros(size(t));
-xprev = 2;
-yprev = 1;
-a = 1.2;
-b = 0.6;
-c = 0.3;
-d = 0.8;
+params = [1.2, 0.6, 0.3, 0.8];
+%params = [1.2, 0.6, 0.3, 0.8];
+xzero = -0.2;
+yzero = 2;
+preyPredator(xzero, yzero, params, T, dt);
 
-for iter = 1:length(t)
-    dxdt = (a - b * yprev) * xprev;
-    dydt = (c * xprev - d) * yprev;
-
-    xcurr = xprev + dxdt * dt;
-    ycurr = yprev + dydt * dt;
-
-    xvec(iter) = xcurr;
-    yvec(iter) = ycurr;
-
-    xprev = xcurr;
-    yprev = ycurr;
-end
-
-plot(t, xvec, t, yvec);
+maxOrMinChoice = "min"; % assign "max" or "min" string
+xyChoice = "y"; % assign "x" or "y" string
+%preyPredatorA(xzero, yzero, params, T, dt, maxOrMinChoice, xyChoice);
