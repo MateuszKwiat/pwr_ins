@@ -15,9 +15,6 @@ class StudentGrades:
                 self.matrix[i][j] = self.grades_array[random.randrange(0, 7)]
         
         self.calcAverage()
-
-        #DEBUG
-        print(self.average)
         print(self.matrix)
 
 
@@ -83,7 +80,7 @@ class StudentGrades:
         for i in range(0, self.col):
             plt.hist(transposed_matrix[i], bins=self.grades_array)
             plt.title(f"Histogram z przedmiotu no.{i}")
-#            plt.show()
+            plt.show()
 #            plt.subplot(int(self.col / 2), int(self.col / int(self.col / 2)), i + 1)
 #        plt.show()
 
