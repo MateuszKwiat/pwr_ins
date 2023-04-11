@@ -1,7 +1,7 @@
 import time
 
 def selectionSort(arr):
-    print("selectionSort()")
+#    print("selectionSort()")
     temp = 0
     startTime = time.time()
     for i in range(0, len(arr)):

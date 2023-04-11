@@ -1,7 +1,7 @@
 import time
 
 def insertionSort(arr):
-    print("insertionSort()")
+#    print("insertionSort()")
     temp = 0
     startTime = time.time()
     for i in range(0, len(arr)):

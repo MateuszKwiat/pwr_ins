@@ -1,6 +1,8 @@
 import showArr
 import randomFillArr
 import bubbleSort
+import bubbleSortModified
+import bubbleSortModified1
 import insertionSort
 import selectionSort
 from statistics import mean
