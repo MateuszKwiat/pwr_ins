@@ -1,4 +1,7 @@
 from numpy import arange
+import matplotlib.pyplot as plt
+
+plotLineWidth = 0.8
 
 def preyPredatorEuler(xZero, yZero, params, t, dt):
     timeList = [round(x, 3) for x in arange(0, t, dt)]
@@ -21,4 +24,8 @@ def preyPredatorEuler(xZero, yZero, params, t, dt):
         xPrev = xList[i]
         yPrev = yList[i]
 
-    return xList, yList, timeList
+    
+
+    plt.plot(timeList, xList, 'r', timeList, yList, 'b', lw=plotLineWidth)
+    plt.legend(['X', 'Y'])
+    plt.show()
