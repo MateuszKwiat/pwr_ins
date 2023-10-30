@@ -10,13 +10,12 @@ class Generators:
             x = (a * x + c) % m
             yield x
 
-    def middleSquareMethod(n):
-        #...
-        #...
-        #...
-        #...
-        #...
-        return 
+    def middleSquareMethod(x):
+        length = len(str(x))
+        while True:
+            x = pow(x, 2)
+            x = int(str(x)[len(str(x)) - length:len(str(x)) + length])
+            yield x
 
     def boxMullerTransform(n):
         u1 = np.random.uniform(size=n)
@@ -50,4 +49,3 @@ class Generators:
             n2.append(y * const)
 
         return n1, n2
-            

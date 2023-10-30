@@ -13,11 +13,12 @@ plt.title("Linear congruential generator")
 plt.show()
 
 # MSM
-#...
-#...
-#...
-#...
-#...
+generator2 = Generators.middleSquareMethod(int(time.time() % 10000))
+data1 = list(next(generator2) for i in range(dataSize))
+
+plt.hist(data1)
+plt.title("Middle square method")
+plt.show()
 
 # BMT
 data2, data3 = Generators.boxMullerTransform(dataSize)
