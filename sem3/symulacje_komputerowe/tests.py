@@ -18,7 +18,7 @@ class Tests:
     # Unfiorm distribution tests
     def kolmogorovSmirnov(x):
         print("Kolmogorov-Smirnov test", end=" - ")
-        testRes = stats.ks_1samp(x)
+        testRes = stats.ks_1samp(x, stats.uniform.cdf)
         return "Sa podstawy do odrzucenia H_0" if not testRes.pvalue < 0.5 else "Nie ma podstaw do odrzucenia H_0"        
 
     def chiSquare(x):
