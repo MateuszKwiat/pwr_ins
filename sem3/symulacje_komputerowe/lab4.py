@@ -1,6 +1,7 @@
 from monteCarloIntegration import monteCarloIntegration
 from quadratureRule import quadratureRule
 from probabilityDistributionDifference import probaiblityDistributionDifference
+from statisticalTestForIntegrals import statisticalTestForIntegrals
 
 # 1)
 mu1, mu2 = 0, 0
@@ -18,5 +19,10 @@ a = -2.0
 b = 2.0
 n = 50000
 
-print(monteCarloIntegration(a, b, n, func))
-print(quadratureRule(a, b, n, func))
+mtCar = monteCarloIntegration(a, b, n, func)
+numeric = quadratureRule(a, b, n, func)
+
+print(f"Monte Carlo integration: {mtCar},\nQuadrature rule method: {numeric},\nApproximations difference: {abs(mtCar - numeric)}")
+
+# 4)
+print(statisticalTestForIntegrals(mtCar, numeric))
