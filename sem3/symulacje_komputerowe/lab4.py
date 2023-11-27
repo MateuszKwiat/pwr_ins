@@ -1,6 +1,16 @@
 from monteCarloIntegration import monteCarloIntegration
 from quadratureRule import quadratureRule
+from probabilityDistributionDifference import probaiblityDistributionDifference
 
+# 1)
+mu1, mu2 = 0, 0
+sd1 = 2
+sd2 = 3
+n = 1000
+
+print(probaiblityDistributionDifference(mu1, sd1, mu2, sd2, n))
+
+# 2) & 3)
 def func(x):
     return x*x
 
