@@ -1,9 +1,4 @@
-create table countryinfo (
-	doc json,
-	_id varchar(32) identity('a','a') not null,
-	primary key (_id)
-);
-/*
+
 create table country (
 	Code char(3) primary key not null default 'UNK' check (char_length(Code) >= 3),
 	Name varchar(255) not null default '',
@@ -40,4 +35,9 @@ alter table countryLanguage
 add foreign key (CountryCode) references country(Code);
 
 create index languageCountryCode on countryLanguage(CountryCode);
-*/
+
+create table countryinfo (
+	doc json,
+	_id varchar(32) identity('a','a') not null,
+	primary key (_id)
+);
