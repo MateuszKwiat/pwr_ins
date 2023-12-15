@@ -26,4 +26,12 @@ from countryinfo
 group by doc->'geography'->>'Continent'
 
 -- 7
+select doc->>'Name', doc->'demographics'->>'LifeExpectancy'
+from countryinfo
+order by doc->'demographics'->>'LifeExpectancy' 
 
+select doc->>'Name', doc->'demographics'->>'LifeExpectancy'
+from countryinfo
+where doc->'demographics'->>'LifeExpectancy' != 'null'
+order by doc->'demographics'->>'LifeExpectancy' desc
+limit 10
