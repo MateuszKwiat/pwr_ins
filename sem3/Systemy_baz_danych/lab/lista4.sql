@@ -16,10 +16,14 @@ where countryinfo.doc->'geography'->>'Continent'='North America'
 order by city.name
 
 -- 5
-
+select doc->>'Name', doc->'government'->>'HeadOfState'
+from countryinfo
+where doc->'government'->>'HeadOfState' like '%Elisabeth%'
 
 -- 6
-
+select count(doc->'geography'->>'Continent'), doc->'geography'->>'Continent'
+from countryinfo
+group by doc->'geography'->>'Continent'
 
 -- 7
 
