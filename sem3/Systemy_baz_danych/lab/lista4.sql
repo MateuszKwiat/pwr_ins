@@ -5,9 +5,9 @@ select doc->'Name', doc->'GNP' from countryinfo
 		from countryinfo)
 
 -- 3
-select max((doc->>'GNP')::float), min((doc->>'GNP')::float), 
-avg((doc->>'GNP')::float)
-from countryinfo group by (doc->'geography'->'Continent')::text
+select doc->'geography'->>'Continent', max((doc->>'GNP')::float),
+min((doc->>'GNP')::float), avg((doc->>'GNP')::float)
+from countryinfo group by doc->'geography'->>'Continent'
 
 -- 4
 select city.name, countryinfo.doc->'geography'->>'Continent' from city
@@ -29,6 +29,7 @@ group by doc->'geography'->>'Continent'
 select doc->>'Name', doc->'demographics'->>'LifeExpectancy'
 from countryinfo
 order by doc->'demographics'->>'LifeExpectancy' 
+limit 10
 
 select doc->>'Name', doc->'demographics'->>'LifeExpectancy'
 from countryinfo
