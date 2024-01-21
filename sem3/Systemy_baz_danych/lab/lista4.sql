@@ -36,3 +36,6 @@ from countryinfo
 where doc->'demographics'->>'LifeExpectancy' != 'null'
 order by doc->'demographics'->>'LifeExpectancy' desc
 limit 10
+
+
+
