@@ -1,4 +1,3 @@
-# haslo mnbd2024
 from math import sqrt
 
 # zad 2
