@@ -130,3 +130,46 @@ ax.set_ylabel('Frequency')
 ax.set_title('Normal Distribution Histogram')
 
 plt.show()
+
+# z20
+quarters = ['Q1', 'Q2', 'Q3', 'Q4']
+income = np.random.randint(1_000, size=4)
+
+fig, ax = plt.subplots()
+
+ax.pie(income, labels=quarters, colors=('lime', 'gold', 'darkgoldenrod', 'deepskyblue'))
+ax.set_title('Income Over the Year by Quarters')
+
+plt.show()
+
+# z21
+x21 = np.linspace(0, 30, 1000)
+y21 = (np.sin(x21 * np.pi) + np.sin(x21 * np.e)) / 2
+
+data1 = np.random.normal(0, 2, 1000)
+
+x21_sc = np.random.rand(100)
+y21_sc = np.random.rand(100)
+colors = np.random.rand(100)
+sizes = np.random.randint(10, 100, 100)
+
+months = ['January', 'February','March', 'April', 'May', 'June', 'July', 'August', 
+              'September', 'October', 'November', 'December']
+
+sales = np.random.randint(1_000, size=12)
+
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(8, 8))
+
+axes[0, 0].plot(x21, y21, label='f(x)=(sin(xpi)+sin(xe))/2')
+axes[0, 0].set_title('Sum of sine functions')
+
+axes[0, 1].hist(data1, bins=30, color='orange')
+axes[0, 1].set_title('Normal Distribution Histogram')
+
+axes[1, 0].scatter(x21_sc, y21_sc, c=colors, s=sizes)
+axes[1, 0].set_title('Scatter Plot of Randomly Generated Points')
+
+axes[1, 1].pie(sales, labels=months)
+axes[1, 1].set_title('Sales by Month')
+
+plt.show()
