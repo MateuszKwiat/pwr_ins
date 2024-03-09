@@ -1,5 +1,8 @@
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
+#--------------------------------------    NUMPY   --------------------------------------
 # z2
 arr2 = np.array([x for x in range(1, 11)])
 
@@ -46,6 +49,7 @@ print(f"\nconcatenated array multiplayed\ncolumn-wise by scalars: {scalars}:\n{a
 
 # z7
 arr7 = np.random.randint(1, 100, size=100)
+
 print(f"--------------z7--------------\nrandom array:\n{arr7}\n\narray's sum: {np.sum(arr7)}")
 print(f"array's mean: {np.mean(arr7)}\narray's standard deviation: {np.std(arr7)}\n")
 print(f"array's cumulative sum: {np.cumsum(arr7)}\n\narray's cumulative product: {np.cumprod(arr7)}\n")
@@ -53,3 +57,76 @@ print(f"array's cumulative sum: {np.cumsum(arr7)}\n\narray's cumulative product:
 # z8
 arr8 = np.random.randint(100, size=20)
 print(f"--------------z8--------------\narray:\n{arr8}")
+
+arr8 = np.sort(arr8)
+print(f"\nsorted array in ascending order:\n{arr8}")
+
+search_val = arr8[np.random.randint(len(arr8))]
+print(f"\nbinary search for value: {search_val}\narray index: {np.searchsorted(arr8, search_val)}")
+
+#--------------------------------------    PANDAS   --------------------------------------
+
+
+
+
+#--------------------------------------    MATPLOTLIB   --------------------------------------
+# z16
+x16 = np.linspace(0, 10, 100)
+y16 = [y*2 for y in x16]
+
+fig, ax = plt.subplots()
+
+ax.plot(x16, y16, label='f(x)=2x')
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Linear Function Plot')
+ax.legend()
+
+plt.show()
+
+# z17
+x17 = np.random.rand(100)
+y17 = np.random.rand(100)
+colors = np.random.rand(100)
+sizes = np.random.randint(10, 100, 100)
+
+fig, ax = plt.subplots()
+
+ax.scatter(x17, y17, c=colors, s=sizes)
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Scatter Plot of Randomly Generated Points')
+
+plt.show()
+
+# z18
+categories = ['January', 'February','March', 'April', 'May', 'June', 'July', 'August', 
+              'September', 'October', 'November', 'December']
+
+sales = np.random.randint(1_000, size=12)
+
+fig, ax = plt.subplots()
+
+ax.bar(categories, sales, color='orange')
+
+ax.set_xticklabels(categories, rotation=45)
+ax.set_xlabel('Months')
+ax.set_ylabel('Sales')
+ax.set_title('Sales by Month')
+
+plt.show()
+
+# z19
+data = np.random.normal(0, 2, 1000)
+
+fig, ax = plt.subplots()
+
+ax.hist(data, bins=30)
+
+ax.set_xlabel('Value')
+ax.set_ylabel('Frequency')
+ax.set_title('Normal Distribution Histogram')
+
+plt.show()
