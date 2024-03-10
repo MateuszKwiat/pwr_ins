@@ -26,6 +26,5 @@ plt.figure(figsize=(6, 6))
 
 nx.draw_networkx_nodes(G, pos, node_size=200, node_color='orange')
 nx.draw_networkx_labels(G, pos)
-nx.draw_networkx_edges(G, pos)
 
 plt.show()
