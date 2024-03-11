@@ -6,7 +6,7 @@ G = nx.Graph()
 pos = {}
 circles = []
 counter = 0
-counter_add = 0
+node_is_deleted = False
 
 # input
 nodes_amount = int(input("Nodes amount: "))
@@ -54,15 +54,15 @@ for node_label in range(1, nodes_amount + 1):
                 G.remove_node(node_label)
                 pos.pop(node_label)
                 circles.pop(len(circles) - 1)
-                counter_add = 1
+                node_is_deleted = True
                 break
         
-    if counter_add == 1:
+    if node_is_deleted:
         counter += 1
     else:
         counter = 0
     
-    counter_add = 0
+    node_is_deleted = False
     
     print(counter)
     plt.pause(0.5)
