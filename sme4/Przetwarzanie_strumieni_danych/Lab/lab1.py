@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import signal
 
@@ -41,3 +42,32 @@ unit_impulse_signal = signal.unit_impulse(len(t))
 add_to_plot(axes, t, unit_impulse_signal, 'Unit Impulse Signal', 1, 2)
 
 plt.show()
+
+# [ZAD_2]
+df = pd.read_csv('Lista1_zad2.csv')
+
+fig, ax = plt.subplots()
+ax.plot(df['Time'], df['Signal'], color='orange')
+
+ax.set_xlabel('Time')
+ax.set_ylabel('Amplitude')
+ax.set_title('Custom signal of trigonometric functions')
+
+plt.show()
+
+# [ZAD_3]
+t = np.linspace(0, 20, 10000)
+sig = np.sin(t * 4) + signal.square(t + np.pi) * signal.sawtooth(t * np.e)
+
+fig, ax = plt.subplots()
+ax.plot(t, sig, color='orange')
+
+ax.set_xlabel('Time')
+ax.set_ylabel('Amplitude')
+ax.set_title('Custom signal of trigonometric functions')
+
+plt.show()
+
+data = {'Time' : t, 'Signal' : sig}
+df = pd.DataFrame(data)
+df.to_csv('Lista1_zad3.csv', index=False)
