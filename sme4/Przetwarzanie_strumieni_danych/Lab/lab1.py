@@ -56,7 +56,7 @@ ax.set_title('Custom signal of trigonometric functions')
 plt.show()
 
 # [ZAD_3]
-t = np.linspace(0, 20, 10000)
+t = np.linspace(0, 20, 1000)
 sig = np.sin(t * 4) + signal.square(t + np.pi) * signal.sawtooth(t * np.e)
 
 fig, ax = plt.subplots()
@@ -71,3 +71,30 @@ plt.show()
 data = {'Time' : t, 'Signal' : sig}
 df = pd.DataFrame(data)
 df.to_csv('Lista1_zad3.csv', index=False)
+
+# [ZAD_4]
+t = np.linspace(0, 20, 1000)
+rand_signal = np.random.rand(len(t))
+randn_signal = np.random.randn(len(t))
+
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(9, 7))
+axes[0, 0].plot(t, rand_signal, color='orange')
+axes[0, 1].hist(rand_signal, bins=30, color='orange')
+axes[1, 0].plot(t, randn_signal, color='orange')
+axes[1, 1].hist(randn_signal, bins=30, color='orange')
+
+axes[0, 0].set_ylabel('Amplitude')
+axes[0, 0].set_title('Signal generated from rand() function')
+
+axes[0, 1].set_ylabel('Frequency')
+axes[0, 1].set_title('Histogram of rand() function')
+
+axes[1, 0].set_xlabel('Time')
+axes[1, 0].set_ylabel('Amplitude')
+axes[1, 0].set_title('Signal generated from randn() function')
+
+axes[1, 1].set_xlabel('Value')
+axes[1, 1].set_ylabel('Frequency')
+axes[1, 1].set_title('Histogram of randn() function')
+
+plt.show()
