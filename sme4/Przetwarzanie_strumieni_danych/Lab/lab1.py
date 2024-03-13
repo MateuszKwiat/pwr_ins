@@ -98,3 +98,47 @@ axes[1, 1].set_ylabel('Frequency')
 axes[1, 1].set_title('Histogram of randn() function')
 
 plt.show()
+
+# [ZAD_5]
+t = np.linspace(-20, 20, 1000)
+
+params = [
+    {'mu' : 2, 'sigma' : 2},
+    {'mu' : 0, 'sigma' : np.pi},
+    {'mu' : 0, 'sigma' : np.e}
+]
+
+norm1 = np.random.normal(params[0]['mu'], params[0]['sigma'], len(t))
+norm2 = np.random.normal(params[1]['mu'], params[1]['sigma'], len(t))
+norm3 = np.random.normal(params[2]['mu'], params[2]['sigma'], len(t))
+
+fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(8, 8))
+
+axes[0, 0].plot(t, norm1, color='orange')
+axes[0, 1].hist(norm1, bins=30, color='orange')
+axes[1, 0].plot(t, norm2, color='orange')
+axes[1, 1].hist(norm2, bins=30, color='orange')
+axes[2, 0].plot(t, norm3, color='orange')
+axes[2, 1].hist(norm3, bins=30, color='orange')
+
+axes[0, 0].set_ylabel('Amplitude')
+axes[0, 0].set_title('plot for params: mu = 2, sigma = 2')
+
+axes[1, 0].set_ylabel('Amplitude')
+axes[1, 0].set_title('plot for params: mu = 0, sigma = np.pi')
+
+axes[2, 0].set_ylabel('Amplitude')
+axes[2, 0].set_title('plot for params: mu = 0, sigma = np.e')
+axes[2, 0].set_xlabel('Time')
+
+axes[0, 1].set_ylabel('Frequency')
+axes[0, 1].set_title('hist for params: mu = 2, sigma = 2')
+
+axes[1, 1].set_ylabel('Frequency')
+axes[1, 1].set_title('hist for params: mu = 0, sigma = np.pi')
+
+axes[2, 1].set_ylabel('Frequency')
+axes[2, 1].set_title('hist for params: mu = 0, sigma = np.e')
+axes[2, 1].set_xlabel('Value')
+
+plt.show()
