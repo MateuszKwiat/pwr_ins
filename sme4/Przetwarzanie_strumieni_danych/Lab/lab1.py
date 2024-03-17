@@ -21,7 +21,6 @@ fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 8))
 
 t = np.linspace(0, 20, 1000)
 
-
 sine_signal = np.sin(t)
 add_to_plot(axes, t, sine_signal, 'Sine Signal', 0, 0)
 
@@ -56,7 +55,7 @@ ax.set_title('Custom signal of trigonometric functions')
 plt.show()
 
 # [ZAD_3]
-t = np.linspace(0, 20, 1000)
+t = np.linspace(0, 20, 100_000)
 sig = np.sin(t * 4) + signal.square(t + np.pi) * signal.sawtooth(t * np.e)
 
 fig, ax = plt.subplots()
@@ -64,7 +63,7 @@ ax.plot(t, sig, color='orange')
 
 ax.set_xlabel('Time')
 ax.set_ylabel('Amplitude')
-ax.set_title('Custom signal of trigonometric functions')
+ax.set_title('Custom signal')
 
 plt.show()
 
@@ -103,7 +102,7 @@ plt.show()
 t = np.linspace(-20, 20, 1000)
 
 params = [
-    {'mu' : 2, 'sigma' : 2},
+    {'mu' : 4, 'sigma' : 2},
     {'mu' : 0, 'sigma' : np.pi},
     {'mu' : 0, 'sigma' : np.e}
 ]
