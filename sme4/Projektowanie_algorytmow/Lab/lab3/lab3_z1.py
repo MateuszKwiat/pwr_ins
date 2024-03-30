@@ -28,6 +28,9 @@ def TM(alphabet):
 
         if head < 0:
             head = 0
+        
+        if head >= len(alphabet):
+            alphabet.append('_')
 
         print(f'alphabet: {alphabet}\ncurrent char: {alphabet[head]}\ncurrent state: {current_state}\n')
 
@@ -35,4 +38,6 @@ def TM(alphabet):
 
 
 print(TM(['a', 'a', 'a', '_']))
+alphabet = [*input()]
+print(TM(alphabet))
 
