@@ -1,19 +1,5 @@
 import numpy as np
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def TM(alphabet):
     sigma = ['[', ',', ']', '0123456789', '_']
     transitions = {
