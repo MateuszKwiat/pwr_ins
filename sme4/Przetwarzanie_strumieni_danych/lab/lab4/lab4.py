@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy import signal
+from scipy.interpolate import splrep, splev
 from matplotlib.widgets import Slider
 
 # [ZAD_1]
@@ -14,7 +15,8 @@ def samples(t, sig, val):
     axes[1].scatter(t[::val], sig[::val], s=s, color='black', zorder=2, label='sine samples')
 # [ZAD_2]
 def interpolate(t, sig, val):
-    axes[0].plot(t, np.interp(t, t[::val], sig[::val]), color='orange', zorder=1, label='sine samples\ninterpolation')
+    axes[0].plot(t, splev(t, splrep(t[::val], sig[::val], k=2)), color='orange', zorder=1, label='sine samples\ninterpolation')
+    #axes[0].plot(t, np.interp(t, t[::val], sig[::val]), color='orange', zorder=1, label='sine samples\ninterpolation')
     #axes[1].plot(t, whittaker_shannon_interpolation(t, t[::val], sig[::val]), color='orange', zorder=1, label='sine samples\ninterpolation')
 
 def whittaker_shannon_interpolation(t, sig, val):
