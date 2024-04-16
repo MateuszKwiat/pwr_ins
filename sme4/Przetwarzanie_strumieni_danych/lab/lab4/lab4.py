@@ -112,4 +112,4 @@ axes[1].set_xlabel('time')
 axes[0].set_ylabel('error value')
 axes[1].set_ylabel('error value')
 
-plt.show()
+plt.show()  
