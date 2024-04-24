@@ -1,8 +1,10 @@
 from scipy import signal
+from scipy.integrate import quad
 
 import numpy as np
 import matplotlib.pyplot as plt
 
+# [ZAD_1]
 samples = 1000
 
 t = np.linspace(0, 2 * np.pi, samples)
@@ -19,6 +21,7 @@ ax.set_title('amplitude spectrum for sine signal')
 
 plt.show()
 
+# # [ZAD_2]
 fig, ax = plt.subplots()
 
 ax.plot((10 * np.log10(sp))[:(np.isclose(sp, max(sp)).nonzero()[0][0]) * 2], color='orange')
@@ -27,3 +30,54 @@ ax.set_ylabel('amplitude (dB)')
 ax.set_title('amplitude spectrum for sine singal in dB scale')
 
 plt.show()
+
+# [ZAD_3]
+fig, ax = plt.subplots(nrows=2, ncols=3, figsize=(12, 8))
+
+sp = abs(np.fft.fft(np.sin(20 * t)))
+ax[0, 0].plot(sp[:len(sp) // 2], color='orange')
+ax[0, 0].set_title('amplitude spectrum\nfor sine signal')
+
+sp = abs(np.fft.fft(signal.square(20 * t)))
+ax[0, 1].plot(sp[:len(sp) // 2], color='orange')
+ax[0, 1].set_title('amplitude spectrum\nfor square signal')
+
+sp = abs(np.fft.fft(signal.sawtooth(20 * t)))
+ax[0, 2].plot(sp[:len(sp) // 2], color='orange')
+ax[0, 2].set_title('amplitude spectrum\nfor sawtooth signal')
+
+sp = abs(np.fft.fft(signal.chirp(t, f0=2, f1=10, t1=t[-1])))
+ax[1, 0].plot(sp[:len(sp) // 2], color='orange')
+ax[1, 0].set_title('amplitude spectrum\nfor chirp signal')
+
+sp = abs(np.fft.fft(np.sin(20 * t) + np.cos(30 * t)))
+ax[1, 1].plot(sp[:len(sp) // 2], color='orange')
+ax[1, 1].set_title('amplitude spectrum for super\nposition of sine and cosine signal')
+
+sp = abs(np.fft.fft(signal.unit_impulse(len(t))))
+ax[1, 2].plot(sp[:len(sp) // 2], color='orange')
+ax[1, 2].set_title('amplitude spectrum for\nunit impulse signal')
+
+# plt.show()
+
+# [ZAD_4*]
+sig = np.sin(200 * t)
+sp = np.fft.fft(sig)
+
+fig, ax = plt.subplots()
+
+ax.scatter(np.linspace(0, 1, len(np.angle(sp))), np.angle(sp, deg=True))
+
+plt.show()
+
+# [ZAD_5]
+t = np.linspace(0, 2 * np.pi, 1000)
+sig = signal.chirp(t, f0=2, f1=10, t1=t[-1]) * np.sin(t)
+
+fig, ax = plt.subplots()
+
+ax.plot(t, sig, color='orange')
+ax.plot(t, np.abs(signal.hilbert(sig)), color='red')
+
+plt.show()
+
