@@ -17,7 +17,7 @@ def samples(t, sig, val):
 def interpolate(t, sig, val):
     axes[0].plot(t, splev(t, splrep(t[::val], sig[::val], k=2)), color='orange', zorder=1, label='sine samples\ninterpolation')
     axes[1].plot(t, whittaker_shannon_interpolation(t, sig[::val], val), color='orange', zorder=1, label='sine samples\ninterpolation')
-
+# [ZAD_3]
 def whittaker_shannon_interpolation(t, sig, val):
     interpolated_signal = []
     T = val * 0.02
@@ -36,7 +36,7 @@ def axes_info(axes):
     axes[1].set_ylim((-1.1, 1.1))
     axes[0].legend(loc='upper right')
     axes[1].legend(loc='upper right')
-    axes[0].set_title('numpy.interp interpolation\nfor sine wave samples')
+    axes[0].set_title('scipy interpolation\nfor sine wave samples')
     axes[1].set_title('Whittaker-Shannon interpolation\nfor sine wave samples')
 
 
