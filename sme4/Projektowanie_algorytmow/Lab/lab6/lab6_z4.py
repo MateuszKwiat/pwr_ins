@@ -23,10 +23,45 @@ def fermat(n, k):
     while k > 0:
         a = np.random.randint(2, n - 2)
         if mod_exp(a, n - 1, n) != 1:
-            return False
+            return 'composite'
         
         k -= 1
 
-    return True
+    return 'probably prime'
 
-print(fermat(7919, 100))
+def find_s_and_d(n):
+    s = 1
+    d = 0
+
+    while True:
+        temp = n / (2**s)
+        if not (temp).is_integer():
+            return s - 1, d
+        
+        s += 1
+        d = temp
+
+def miller_rabin(n, k):
+    for _ in range(k):
+        a = np.random.randint(2, n - 2)
+        s, d = find_s_and_d(n - 1)
+        x = mod_exp(a, d, n)
+
+        for _ in range(s):
+            y = mod_exp(x, 2, n)
+            if y == 1 and x != 1 and x != n - 1:
+                return 'composite'
+            
+            x = y
+
+        if y != 1:
+            return 'composite'
+        
+    return 'probably prime'
+
+
+number = 7911
+iterations = 1000
+
+print(fermat(number, iterations))
+print(miller_rabin(number, iterations))
