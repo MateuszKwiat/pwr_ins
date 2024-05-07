@@ -35,7 +35,7 @@ def plot_window(window_function, params):
     ax[0].set_ylabel('amplitude')
     ax[0].set_title(f'{((str(window_function).split()[1]).split("_")[0]).title()} window function')
 
-    ax[1].plot(freq, 2.0 / N * np.abs(transform ), color='orange')
+    ax[1].plot(freq, 2.0 / N * np.abs(transform), color='orange')
     ax[1].set_title(f'Fourier transform of {((str(window_function).split()[1]).split("_")[0]).title()} window function')
     ax[1].grid()
 
@@ -48,10 +48,26 @@ plot_window(blackman_window, [N, 0.16])
 plot_window(dirchlet_window, [N])
 
 # [ZAD_2]
+def plot_window_view(window_function, sig, params):
+    samp_size = 10_000
+    
+    window_size = 200 * np.pi
+    window_view = [window_function(n, *params) * s for n, s in zip(np.linspace(0, window_size, samp_size), sig)]
+    
+    fig, ax = plt.subplots()
+    
+    ax.plot(np.linspace(0, window_size, samp_size), window_view, color='orange')
 
-t = np.linspace(0, 100 * np.pi, 1000)
-sig = np.sin(200 * t) + np.sin(300 * t) + np.sin(400 * t)
+    ax.set_xlabel('samples')
+    ax.set_ylabel('amplitude')
+    ax.set_title(f'{((str(window_function).split()[1]).split("_")[0]).title()} window view')
+    
+    plt.show()
 
-win = [s * hann_window(n, max(t)) for s, n in zip(sig, t)]
-plt.plot(win)
-plt.show()
+t = np.linspace(0, 200 * np.pi, 10_000)
+sig = np.sin(2000 * t) + np.sin(300 * t) + np.sin(4000 * t)
+
+plot_window_view(hamming_window, sig, [N, 0.54])
+plot_window_view(hann_window, sig, [N])
+plot_window_view(blackman_window, sig, [N, 0.16])
+plot_window_view(dirchlet_window, sig, [N])
