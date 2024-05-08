@@ -42,32 +42,46 @@ def plot_window(window_function, params):
     plt.show()
 
 N = 200 * np.pi
-plot_window(hamming_window, [N, 0.54])
-plot_window(hann_window, [N])
-plot_window(blackman_window, [N, 0.16])
-plot_window(dirchlet_window, [N])
+# plot_window(hamming_window, [N, 0.54])
+# plot_window(hann_window, [N])
+# plot_window(blackman_window, [N, 0.16])
+# plot_window(dirchlet_window, [N])
 
 # [ZAD_2]
-def plot_window_view(window_function, sig, params):
+def plot_window_view_fft(window_function, sig, params):
     samp_size = 10_000
     
     window_size = 200 * np.pi
     window_view = [window_function(n, *params) * s for n, s in zip(np.linspace(0, window_size, samp_size), sig)]
     
-    fig, ax = plt.subplots()
+    f_transform = fft.fft(window_view)[:200]
+    freq = (fft.fftfreq(len(sig)))[:200]
     
-    ax.plot(np.linspace(0, window_size, samp_size), window_view, color='orange')
+    fig, ax = plt.subplots(ncols=3)
+    
+    ax[0].plot(np.arange(samp_size), sig, color='orange')
+    ax[1].plot(np.arange(samp_size), window_view, color='orange')
+    ax[2].plot(freq, 2.0 / N * np.abs(f_transform), color='orange')
 
-    ax.set_xlabel('samples')
-    ax.set_ylabel('amplitude')
-    ax.set_title(f'{((str(window_function).split()[1]).split("_")[0]).title()} window view')
+    ax[0].set_xlabel('samples')
+    ax[0].set_title('signal')
+    
+    ax[1].set_xlabel('samples')
+    ax[1].set_title(f'{((str(window_function).split()[1]).split("_")[0]).title()} window view')
+
+    ax[2].set_xlabel('frequency')
+    ax[2].set_ylabel('amplitude')
+    ax[2].set_title(f'{((str(window_function).split()[1]).split("_")[0]).title()} window view fft')
     
     plt.show()
 
-t = np.linspace(0, 200 * np.pi, 10_000)
-sig = np.sin(2000 * t) + np.sin(300 * t) + np.sin(4000 * t)
+# t = np.linspace(0, 200 * np.pi, 10_000)
+# sig = np.sin(2000 * t) + np.sin(300 * t) + np.sin(4000 * t)
 
-plot_window_view(hamming_window, sig, [N, 0.54])
-plot_window_view(hann_window, sig, [N])
-plot_window_view(blackman_window, sig, [N, 0.16])
-plot_window_view(dirchlet_window, sig, [N])
+t = np.linspace(0, 4 * np.pi, 10_000)
+sig = signal.chirp(t, f0=2, f1=10, t1=t[-1]) * np.sin(t)
+
+# plot_window_view_fft(hamming_window, sig, [N, 0.54])
+# plot_window_view_fft(hann_window, sig, [N])
+# plot_window_view_fft(blackman_window, sig, [N, 0.16])
+# plot_window_view_fft(dirchlet_window, sig, [N])
