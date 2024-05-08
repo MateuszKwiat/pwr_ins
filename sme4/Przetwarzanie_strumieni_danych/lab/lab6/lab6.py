@@ -1,3 +1,4 @@
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -42,10 +43,10 @@ def plot_window(window_function, params):
     plt.show()
 
 N = 200 * np.pi
-plot_window(hamming_window, [N, 0.54])
-plot_window(hann_window, [N])
-plot_window(blackman_window, [N, 0.16])
-plot_window(dirchlet_window, [N])
+# plot_window(hamming_window, [N, 0.54])
+# plot_window(hann_window, [N])
+# plot_window(blackman_window, [N, 0.16])
+# plot_window(dirchlet_window, [N])
 
 # [ZAD_2]
 def plot_window_view_fft(window_function, sig, params):
@@ -81,10 +82,10 @@ sig = np.sin(2000 * t) + np.sin(300 * t) + np.sin(4000 * t)
 # t = np.linspace(0, 4 * np.pi, 10_000)
 # sig = signal.chirp(t, f0=2, f1=10, t1=t[-1]) * np.sin(t)
 
-plot_window_view_fft(hamming_window, sig, [N, 0.54])
-plot_window_view_fft(hann_window, sig, [N])
-plot_window_view_fft(blackman_window, sig, [N, 0.16])
-plot_window_view_fft(dirchlet_window, sig, [N])
+# plot_window_view_fft(hamming_window, sig, [N, 0.54])
+# plot_window_view_fft(hann_window, sig, [N])
+# plot_window_view_fft(blackman_window, sig, [N, 0.16])
+# plot_window_view_fft(dirchlet_window, sig, [N])
 
 # [ZAD_3]
 t = np.linspace(0, 200 * np.pi, 10_000)
@@ -98,12 +99,42 @@ sig_slice = len(sig) // 10
 f_transform = fft.fft(sig)[:sig_slice]
 freq = fft.fftfreq(len(sig))[:sig_slice]
 
-fig, ax = plt.subplots()
+# fig, ax = plt.subplots()
 
-ax.plot(freq, np.abs(f_transform), color='orange')
+# ax.plot(freq, np.abs(f_transform), color='orange')
 
-ax.set_xlabel('frequency')
-ax.set_ylabel('amplitude')
-ax.set_title('fft of signal')
+# ax.set_xlabel('frequency')
+# ax.set_ylabel('amplitude')
+# ax.set_title('fft of signal')
+
+# plt.show()
+
+#[ZAD_4]
+df = pd.read_csv('Data1.csv')
+df = df.loc[df['sensor position'] == 'FP1']
+df = df[['time', 'sensor value']]
+
+y = np.array(df['sensor value'])
+t = np.array(df['time'])
+
+f_transform = fft.fft(y)
+freq = fft.fftfreq(len(y))
+
+fig, ax = plt.subplots(nrows=2)
+fig.tight_layout()
+
+ax[0].plot(t, y, color='orange')
+ax[1].plot(freq, np.abs(f_transform), color='orange')
+
+ax[0].set_xlabel('time')
+ax[0].set_ylabel('amplitude')
+ax[0].set_title('EEG correlates of genetic predisposition to alcoholism')
+
+ax[1].set_xlabel('frequency')
+ax[1].set_ylabel('amplitude')
+ax[1].set_title('fft of signal')
+
+ax[0].grid()
+ax[1].grid()
 
 plt.show()
