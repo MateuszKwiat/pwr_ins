@@ -43,10 +43,10 @@ def plot_window(window_function, params):
     plt.show()
 
 N = 200 * np.pi
-# plot_window(hamming_window, [N, 0.54])
-# plot_window(hann_window, [N])
-# plot_window(blackman_window, [N, 0.16])
-# plot_window(dirchlet_window, [N])
+plot_window(hamming_window, [N, 0.54])
+plot_window(hann_window, [N])
+plot_window(blackman_window, [N, 0.16])
+plot_window(dirchlet_window, [N])
 
 # [ZAD_2]
 def plot_window_view_fft(window_function, sig, params):
@@ -82,10 +82,10 @@ sig = np.sin(2000 * t) + np.sin(300 * t) + np.sin(4000 * t)
 # t = np.linspace(0, 4 * np.pi, 10_000)
 # sig = signal.chirp(t, f0=2, f1=10, t1=t[-1]) * np.sin(t)
 
-# plot_window_view_fft(hamming_window, sig, [N, 0.54])
-# plot_window_view_fft(hann_window, sig, [N])
-# plot_window_view_fft(blackman_window, sig, [N, 0.16])
-# plot_window_view_fft(dirchlet_window, sig, [N])
+plot_window_view_fft(hamming_window, sig, [N, 0.54])
+plot_window_view_fft(hann_window, sig, [N])
+plot_window_view_fft(blackman_window, sig, [N, 0.16])
+plot_window_view_fft(dirchlet_window, sig, [N])
 
 # [ZAD_3]
 t = np.linspace(0, 200 * np.pi, 10_000)
@@ -99,15 +99,15 @@ sig_slice = len(sig) // 10
 f_transform = fft.fft(sig)[:sig_slice]
 freq = fft.fftfreq(len(sig))[:sig_slice]
 
-# fig, ax = plt.subplots()
+fig, ax = plt.subplots()
 
-# ax.plot(freq, np.abs(f_transform), color='orange')
+ax.plot(freq, np.abs(f_transform), color='orange')
 
-# ax.set_xlabel('frequency')
-# ax.set_ylabel('amplitude')
-# ax.set_title('fft of signal')
+ax.set_xlabel('frequency')
+ax.set_ylabel('amplitude')
+ax.set_title('fft of signal')
 
-# plt.show()
+plt.show()
 
 #[ZAD_4]
 df = pd.read_csv('Data1.csv')
