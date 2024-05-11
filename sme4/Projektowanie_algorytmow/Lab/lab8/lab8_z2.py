@@ -9,6 +9,10 @@ class Stack:
         self.i += 1
 
     def pop(self):
+        if self.i == -1:
+            print('stack is already empty')
+            return None
+        
         temp = self.s[self.i]
         self.s.pop(self.i)
         self.i -= 1
