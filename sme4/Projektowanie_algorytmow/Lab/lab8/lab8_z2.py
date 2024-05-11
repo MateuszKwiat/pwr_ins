@@ -12,6 +12,7 @@ class Stack:
         temp = self.s[self.i]
         self.s.pop(self.i)
         self.i -= 1
+        print(temp)
 
         return temp
 
