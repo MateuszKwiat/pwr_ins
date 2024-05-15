@@ -8,7 +8,7 @@ make_wavelet = lambda name, isContinuous=False: pywt.ContinuousWavelet(name).wav
 wavelet_params = [['haar'], ['db4'], ['sym2'], ['coif2'], ['bior2.2'], ['gaus1', True], ['mexh', True], ['morl', True]]
 wavelets = [make_wavelet(*name) for name in wavelet_params]
 
-fig, axes = plt.subplots(nrows=2, ncols=4)
+fig, axes = plt.subplots(nrows=2, ncols=4) 
 fig.tight_layout()
 
 for wavelet, params, ax in zip(wavelets, wavelet_params, axes.ravel()):
