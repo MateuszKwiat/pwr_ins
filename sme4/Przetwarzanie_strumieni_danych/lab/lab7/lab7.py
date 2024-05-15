@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from matplotlib.widgets import Slider
+from scipy import signal
 
 # [ZAD_1]
 make_wavelet = lambda name, isContinuous=False: pywt.ContinuousWavelet(name).wavefun(10) if isContinuous else pywt.Wavelet(name).wavefun(10)
@@ -44,5 +45,31 @@ ax_level_slider = Slider(ax=ax_level, label='level', valmin=2, valmax=10, valini
 plot_wavelet(db_wavelet())
 ax_version_slider.on_changed(update)
 ax_level_slider.on_changed(update)
+
+plt.show()
+
+# [ZAD_3]
+def plot_scaleogram(ax, sig, t, name):
+    cwtmatr, freqs = pywt.cwt(sig, widths, name, sampling_period=sampling_period)
+    cwtmatr = np.abs(cwtmatr[:-1, :-1])
+
+    pcm = ax.pcolormesh(t, freqs, cwtmatr)
+    ax.set_yscale('log')
+    ax.set_xlabel('Time (s)')
+    ax.set_ylabel('Frequency (Hz)')
+    ax.set_title(f'{name} wavelet transform (scaleogram)')
+    fig.colorbar(pcm, ax=ax)
+
+wavelets_names = ['cmor1.5-1.0', 'gaus1', 'mexh']
+t = np.linspace(0, 4 * np.pi, 10_000)
+sig = signal.chirp(t, f0=2, f1=100, t1=t[-1])
+
+widths = np.geomspace(1, 1024, num=100)
+sampling_period = np.diff(t).mean()
+
+fig, ax = plt.subplots()
+fig.tight_layout()
+
+plot_scaleogram(ax, sig, t, wavelets_names[0])
 
 plt.show()
