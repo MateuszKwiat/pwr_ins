@@ -27,3 +27,5 @@ knn.fit(X_train, Y_train)
 Y_pred = knn.predict(X_test)
 
 print(metrics.classification_report(Y_test, Y_pred))
+
+print(f"accuracy: {metrics.accuracy_score(Y_test, Y_pred)}\nprecision: {metrics.precision_score(Y_test, Y_pred, average='weighted')}\nrecall: {metrics.recall_score(Y_test, Y_pred, average='weighted')}")
