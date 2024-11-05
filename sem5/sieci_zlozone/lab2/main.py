@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from pyvis.network import Network
 
 fh = open("congress.edgelist", "rb")
 G = nx.read_edgelist(fh)
@@ -25,3 +26,10 @@ nx.draw_networkx_nodes(G, pos, node_size=40)
 nx.draw_networkx_edges(G, pos, width=0.25)
 
 plt.show()
+
+# zad4
+net = Network()
+net.from_nx(G)
+net.toggle_physics(False)
+# net.toggle_physics(True)
+net.save_graph('net.html')
