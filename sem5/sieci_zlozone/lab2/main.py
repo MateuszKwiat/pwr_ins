@@ -12,3 +12,8 @@ B = nx.adjacency_matrix(G)
 print(A)
 print('-'*40)
 print(B)
+
+# zad2
+G1 = nx.from_numpy_array(B)
+
+# zad3
