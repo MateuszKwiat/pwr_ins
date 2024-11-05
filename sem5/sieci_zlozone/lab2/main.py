@@ -1,5 +1,5 @@
 import networkx as nx
-from networkx.linalg.graphmatrix import incidence_matrix
+import matplotlib.pyplot as plt
 
 fh = open("congress.edgelist", "rb")
 G = nx.read_edgelist(fh)
@@ -17,3 +17,11 @@ print(B)
 G1 = nx.from_numpy_array(B)
 
 # zad3
+plt.figure(figsize=(20, 20), dpi=80)
+plt.axis('off')
+fig = plt.figure(1)
+pos = nx.spring_layout(G)
+nx.draw_networkx_nodes(G, pos, node_size=40)
+nx.draw_networkx_edges(G, pos, width=0.25)
+
+plt.show()
